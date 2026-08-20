@@ -1,0 +1,10 @@
+datasets==5.0.1
+trl==1.10.0
+torch==2.10.0+cpu
+OpenCC==1.1.9
+pyspellchecker==0.9.0
+transformers==5.15.0
+trl==1.10.0
+peft==0.20.0
+accelerate==1.14.0
+bitsandbytes==0.50.0
