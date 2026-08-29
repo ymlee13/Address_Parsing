@@ -1,7 +1,7 @@
 # Hong Kong Address Parser
 
 [![GitHub](https://img.shields.io/badge/GitHub-ymlee13/address_parser-blue)](https://github.com/ymlee13/address_parser)
-[![Hugging Face](https://img.shields.io/badge/Hugging%20Face-ymlee13/Qwen2.5--3B--Instruct--Address--Formatter-yellow)](https://huggingface.co/ymlee13/Qwen2.5-3B-Instruct_Address_Formatter)
+[![Hugging Face](https://img.shields.io/badge/Hugging%20Face-ymlee13/Qwen2.5--3B--Instruct--Address--Formatter-yellow)](https://huggingface.co/ymlee13/ymlee13/Qwen2.5-3B-Instruct_Address_Formatter)
 
 ## 📝 Overview
 
@@ -15,40 +15,66 @@ A fine-tuned **Qwen2.5-3B-Instruct** model for Hong Kong address parsing and for
 - 🎯 **High Accuracy**: Fine-tuned on real Hong Kong address data
 - ⚡ **Efficient**: 4-bit quantization support for memory-efficient inference
 
-## 🚀 Quick Start
+## 📊 Performance Metrics
 
-### Installation
+| Metric | Score |
+|--------|-------|
+| Average Line 1 Similarity | 85-95% |
+| Average Line 2 Similarity | 85-95% |
+| Strict Both Lines Match | 70-80% |
+| Inference Speed | ~0.5s/address |
 
+### Prerequisites
+- Python 3.9+
+- CUDA-compatible GPU (24GB+ VRAM recommended)
+- Git LFS (for Hugging Face uploads)
+
+### Setup
+
+1. **Clone the repository**
 ```bash
-# Clone the repository
-git clone https://github.com/ymlee13/address_parser.git
-cd address_parser
+git clone https://github.com/ymlee13/address_parsing.git
+cd address_parsing
+```
 
-# Install dependencies
+2. **Install dependencies**
+```bash
 pip install -r requirements.txt
 ```
-### Download the Model
-The fine-tuned LoRA adapters are available on Hugging Face:
-```bash
-from peft import PeftModel
-from transformers import AutoModelForCausalLM, AutoTokenizer
 
-# Load base model and adapters
-base_model = AutoModelForCausalLM.from_pretrained(
-    "Qwen/Qwen2.5-3B-Instruct",
-    device_map="auto"
-)
-model = PeftModel.from_pretrained(base_model, "ymlee13/Qwen2.5-3B-Instruct_Address_Formatter")
-tokenizer = AutoTokenizer.from_pretrained("Qwen/Qwen2.5-3B-Instruct")
+3. **Download the base model (optional if you just want to test)**
+```bash
+git lfs install
+git clone https://huggingface.co/Qwen/Qwen2.5-3B-Instruct
 ```
 
-### Usage
-```bash
-from src.parser import HKAddressParserLLM
+## 🚀 Quick Start
 
+### Training the Model
+
+1. **Prepare your data**
+```bash
+python -c "from jsonl_converter import parse_database_file_to_nested_jsonl; parse_database_file_to_nested_jsonl('./data/database.txt', './data/database.jsonl')"
+```
+
+2. **Run training**
+ ```bash
+jupyter notebook train_model.ipynb
+```
+
+### Testing the Model
+```bash
+jupyter notebook test_model.ipynb
+```
+
+### Using the Parser
+```python
+from llm_parser import HKAddressParserLLM
+
+# Initialize parser
 parser = HKAddressParserLLM(
-    base_model_path="Qwen/Qwen2.5-3B-Instruct",
-    lora_path="ymlee13/Qwen2.5-3B-Instruct_Address_Formatter"
+    base_model_path="./models/Qwen2.5-3B-Instruct",
+    lora_path="./Qwen2.5-3B-Instruct_Address_Formatter"
 )
 
 # Parse a single address
@@ -57,35 +83,117 @@ result = parser.parse(address)
 print(f"Line 1: {result[1]}")
 print(f"Line 2: {result[2]}")
 
-# Parse batch
+# Batch parsing
 addresses = [
-    ("ROOM 2107, 42/F, WINNING HEIGHTS, 277 CASTLE PEAK ROAD, TSUEN WAN", ""),
-    ("九龍深水埗區長沙灣道833號長沙灣廣場二期5樓", "")
+    ("九龍觀塘區雲漢街61號南寧大樓地庫01舖", ""),
+    ("ROOM 2107, 42/F, WINNING HEIGHTS, TSUEN WAN", ""),
 ]
-results = parser.parse_batch(addresses, batch_size=2)
+results = parser.parse_batch(addresses)
+```
+## 📁 Project Structure
+```text
+address_parsing/
+├── README.md                 # This file
+├── requirements.txt          # Python dependencies
+├── .gitignore               # Git ignore file
+├── train_model.ipynb        # Fine-tuning notebook
+├── test_model.ipynb         # Testing and evaluation notebook
+├── llm_parser.ipynb         # Inference wrapper notebook
+├── jsonl_converter.ipynb    # Data conversion utility
+├── data/
+│   ├── database.txt         # Training data (input|line1|line2)
+│   ├── database.jsonl       # Converted training data
+│   ├── test_data.txt        # Test data examples
+│   └── gen_real_address.ipynb # Generate synthetic addresses
+└── models/                  # Model storage (not in repo)
+    ├── Qwen2.5-3B-Instruct/ # Base model
+    └── Qwen2.5-3B-Instruct_Address_Formatter/ # Fine-tuned adapters
 ```
 
-### 📊 Model Performance
+##🔧 Model Details
 
-### Project Structure
+### Training Configuration
+- Base Model: Qwen/Qwen2.5-3B-Instruct
+- Fine-tuning Method: LoRA (Low-Rank Adaptation)
+- Quantization: 4-bit (NF4)
+- Learning Rate: 2e-5
+- Epochs: 3
+- Batch Size: 4 (per device)
+- Gradient Accumulation: 2
+- LoRA Rank: 8
+- LoRA Alpha: 16
+- Target Modules: q_proj, k_proj, v_proj, o_proj, gate_proj, up_proj, down_proj
 
-```bash
-address_parser/
-├── src/                    # Source code
-│   ├── parser.py          # Main parser class
-│   ├── train.py           # Training script
-│   ├── test.py            # Testing script
-│   └── utils.py           # Utilities
-├── notebooks/             # Jupyter notebooks
-│   ├── train_model.ipynb
-│   ├── test_model.ipynb
-│   ├── llm_parser.ipynb
-│   └── jsonl_converter.ipynb
-├── data/                  # Data files
-│   ├── raw/              # Raw training data
-│   ├── processed/        # Processed JSONL data
-│   └── test/             # Test data
-├── scripts/              # Utility scripts
-├── requirements.txt      # Dependencies
-└── README.md            # This file
+### Post-processing Features
+- Character pooling and reconstruction
+- Intelligent omission detection and re-insertion
+- Language detection (Chinese/English)
+- Traditional Chinese conversion
+- English spell checking
+
+##📊 Dataset
+The model was trained on a dataset of 570+ Hong Kong addresses generated from real geospatial data (ALS-GeoJSON from HK government data portal). Each address is split into:
+- Line 1: Specific location (floor, unit, building)
+- Line 2: General location (street, district, region)
+Data format:
+```text
+[original input] | [line 1] | [line 2]
 ```
+
+##🤖 Inference Examples
+
+### Chinese Address
+Input:
+```text
+九龍觀塘區雲漢街61號南寧大樓地庫01舖
+```
+
+Output:
+```text
+Line 1: 南寧大樓地庫01舖
+Line 2: 九龍觀塘區雲漢街61號
+```
+
+### English Address
+Input:
+```text
+ROOM 2107, 42/F, WINNING HEIGHTS, 277 CASTLE PEAK ROAD, TSUEN WAN, NEW TERRITORIES
+```
+
+Output:
+```text
+Line 1: FLAT 2107, 42/F, WINNING HEIGHTS
+Line 2: 277 CASTLE PEAK ROAD, TSUEN WAN, NEW TERRITORIES
+```
+
+## 📈 Performance Optimization
+###For Tesla P40 / Pascal GPUs
+The parser includes special handling for older GPUs:
+- Disables Flash Attention
+- Uses fp16 instead of 4-bit quantization when needed
+- Memory-efficient batching
+
+###Memory Usage
+- Training: ~12-14GB VRAM
+- Inference: ~6-8GB VRAM
+
+##🔄 Version History
+
+###v1.0.0 (Current)
+- Initial release
+- Fine-tuned Qwen2.5-3B-Instruct for address parsing
+- Batch inference support
+- Smart post-processing
+
+##📝 License
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+##🙏 Acknowledgments
+- Qwen for the base model
+- Hugging Face for the transformers library
+- Hong Kong Government for the ALS-GeoJSON dataset
+
+##📧 Contact
+- Author: ymlee13
+- Hugging Face: @ymlee13
+- GitHub: ymlee13
