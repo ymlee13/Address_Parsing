@@ -222,7 +222,7 @@ The parser includes special handling for older GPUs:
 - Uses fp16 instead of 4-bit quantization when needed
 - Memory-efficient batching
 
-###Memory Usage
+### Memory Usage
 - Training: ~12-14GB VRAM
 - Inference: ~6-8GB VRAM
 
