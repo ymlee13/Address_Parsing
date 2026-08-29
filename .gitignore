@@ -1,66 +1,33 @@
+# Python
 __pycache__/
-*.py[cod]
-*$py.class
-*.so
+*.pyc
+*.pyo
+*.pyd
 .Python
 env/
 venv/
 ENV/
-build/
-develop-eggs/
-dist/
-downloads/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-wheels/
-*.egg-info/
-.installed.cfg
-*.egg
+.venv
 
-# Jupyter Notebook
-.ipynb_checkpoints
-*/.ipynb_checkpoints/*
+# Jupyter Notebooks
+.ipynb_checkpoints/
+*.ipynb_checkpoints
 
-# Model files and checkpoints
-models/
+# Model files (large)
 *.bin
 *.safetensors
-*.pt
 *.pth
 *.ckpt
-*.h5
-*.pb
-*.onnx
+models/
+Qwen2.5-3B-Instruct_Address_Formatter/
 
-# Training outputs
-results/
-checkpoints/
-runs/
-logs/
-wandb/
-lightning_logs/
-
-# Large data files
-*.zip
-*.tar.gz
-*.tgz
-data/ALS-GeoJSON.zip
-
-# OS
-.DS_Store
-Thumbs.db
+# Data files (if large)
+# data/ALS-GeoJSON.zip   # uncomment if you want to exclude the zip
 
 # IDE
 .vscode/
 .idea/
-*.swp
-*.swo
 
-# Environment
-.env
-.env.local
+# System
+.DS_Store
+Thumbs.db
