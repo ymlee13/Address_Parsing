@@ -1,13 +1,12 @@
-# Byte-compiled / optimized / DLL files
+# Python
 __pycache__/
 *.py[cod]
 *$py.class
-
-# C extensions
 *.so
-
-# Distribution / packaging
 .Python
+env/
+venv/
+ENV/
 build/
 develop-eggs/
 dist/
@@ -24,74 +23,49 @@ wheels/
 .installed.cfg
 *.egg
 
-# PyInstaller
-*.manifest
-*.spec
-
-# Installer logs
-pip-log.txt
-pip-delete-this-directory.txt
-
-# Unit test / coverage reports
-htmlcov/
-.tox/
-.coverage
-.coverage.*
-.cache
-nosetests.xml
-coverage.xml
-*.cover
-*.py,cover
-.hypothesis/
-.pytest_cache/
-
-# Environments
-.env
-.venv
-env/
-venv/
-ENV/
-env.bak/
-venv.bak/
-
 # Jupyter Notebooks
 .ipynb_checkpoints/
+*.ipynb_checkpoints/
 
-# IPython
-profile_default/
-ipython_config.py
-
-# pyenv
-.python-version
-
-# mypy
-.mypy_cache/
-.dmypy.json
-dmypy.json
-
-# Pyre type checker
-.pyre/
-
-# Model files (large)
-models/
+# Model files (large - can't upload to GitHub)
 *.pth
-*.safetensors
+*.pt
 *.bin
+*.safetensors
 *.h5
-*.ckpt
 *.pb
 *.onnx
-
-# LoRA adapters (optional - you'll upload to Hugging Face)
+*.ckpt
+models/
+Qwen2.5-3B-Instruct/
 Qwen2.5-3B-Instruct_Address_Formatter/
 
-# Data files (if sensitive)
+# Data files (exclude sensitive or large data)
+data/*.jsonl
 data/*.txt
-!data/test_data_1.txt  # Include this if it's small
+data/test_data/*
+data/ALS-GeoJSON.zip
+*.zip
 
-# Results
-results/
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
 
-# OS files
+# OS
 .DS_Store
 Thumbs.db
+
+# Cache
+.cache/
+*.log
+*.out
+
+# Environment variables
+.env
+.env.local
+
+# Hugging Face cache
+.huggingface/
