@@ -168,7 +168,7 @@ Line 2: 277 CASTLE PEAK ROAD, TSUEN WAN, NEW TERRITORIES
 
 ## 📈 Performance Optimization
 
-###For Tesla P40 / Pascal GPUs
+### For Tesla P40 / Pascal GPUs
 The parser includes special handling for older GPUs:
 - Disables Flash Attention
 - Uses fp16 instead of 4-bit quantization when needed
@@ -178,23 +178,23 @@ The parser includes special handling for older GPUs:
 - Training: ~12-14GB VRAM
 - Inference: ~6-8GB VRAM
 
-##🔄 Version History
+## 🔄 Version History
 
-###v1.0.0 (Current)
+### v1.0.0 (Current)
 - Initial release
 - Fine-tuned Qwen2.5-3B-Instruct for address parsing
 - Batch inference support
 - Smart post-processing
 
-##📝 License
+## 📝 License
 This project is licensed under the MIT License - see the LICENSE file for details.
 
-##🙏 Acknowledgments
+## 🙏 Acknowledgments
 - Qwen for the base model
 - Hugging Face for the transformers library
 - Hong Kong Government for the ALS-GeoJSON dataset
 
-##📧 Contact
+## 📧 Contact
 - Author: ymlee13
 - Hugging Face: @ymlee13
 - GitHub: ymlee13
