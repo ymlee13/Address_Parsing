@@ -226,7 +226,7 @@ The parser includes special handling for older GPUs:
 - Training: ~12-14GB VRAM
 - Inference: ~6-8GB VRAM
 
-## ## 📚 References
+## 📚 References
 
 - Hong Kong Government ALS-GeoJSON Dataset: https://data.gov.hk/en-data/dataset/hk-dpo-als_01-als
 - Qwen2.5 Model: https://huggingface.co/Qwen/Qwen2.5-3B-Instruct
