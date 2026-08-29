@@ -1,23 +1,44 @@
 # address_parsing
-[![Hugging Face Model](https://img.shields.io/badge/🤗%20Hugging%20Face-Model-blue)](你的HF模型链接)
-[![GitHub Repo](https://img.shields.io/badge/GitHub-Repo-blue?logo=github)](你的GitHub仓库链接)
+A fine-tuned Qwen2.5-3B-Instruct model for Hong Kong address parsing and formatting. This model splits messy address inputs into two structured lines using LoRA fine-tuning.
 
-## 📖 项目简介 (Project Description)
+## 📋 Overview
 
-这是一个基于 **Qwen2.5-3B-Instruct** 模型，使用 **LoRA** 技术微调而成的香港地址格式化工具。它能将杂乱、非结构化的香港地址文本，智能地拆分为 **行1 (Line 1)** 和 **行2 (Line 2)** 两个部分，适用于地址标准化、数据清洗等场景。
+This project fine-tunes Qwen2.5-3B-Instruct to parse and format Hong Kong addresses into two logical components (e.g., building/unit details in Line 1, street/district in Line 2). The model handles both English and Traditional Chinese addresses with high accuracy.
 
-本项目包含了完整的数据处理、模型训练、测试评估和推理部署的代码。
+## 🚀 Features
 
-**主要特点:**
-*   🧠 **基于LLM**: 利用 Qwen2.5-3B 强大的语义理解能力。
-*   ⚡ **高效微调**: 使用 LoRA (Low-Rank Adaptation) 技术，在单卡GPU上即可完成训练。
-*   🌏 **双语支持**: 能够处理中文（繁体/简体）和英文地址。
-*   🧹 **完整工具链**: 从真实数据生成、数据格式转换，到模型训练、评估和推理，提供全套代码。
+- **Dual Language Support**: Handles English and Traditional Chinese addresses
+- **Intelligent Splitting**: Splits addresses into two logical lines
+- **Post-processing**: Includes fallback mechanisms and character-level correction
+- **Batch Processing**: Efficient batch inference with GPU support
+- **Fine-tuned with LoRA**: Lightweight adapter weights (~8MB)
+- **4-bit Quantization**: Optimized for memory-efficient inference
 
-## 🚀 快速开始 (Quick Start)
+## 📦 Repository Structure
+address_parsing/
+├── data/
+│ ├── test_data/ # Test datasets
+│ └── train_data.jsonl # Training data
+├── Qwen2.5-3B-Instruct_Address_Formatter/ # LoRA adapters (on Hugging Face)
+├── train_model.ipynb # Fine-tuning notebook
+├── test_model.ipynb # Evaluation notebook
+├── llm_parser.ipynb # Inference wrapper
+├── jsonl_converter.ipynb # Data preparation
+├── requirements.txt # Python dependencies
+└── README.md
 
-### 环境准备 (Environment Setup)
-1.  **克隆仓库 (Clone the repo)**
-    ```bash
-    git clone https://github.com/ymlee13/HongKong-Address-Formatter.git
-    cd HongKong-Address-Formatter
+
+## 🛠️ Installation
+
+### Prerequisites
+
+- Python 3.8+
+- CUDA-capable GPU (recommended)
+- 16GB+ RAM (for training)
+
+### Setup
+
+1. Clone this repository:
+```bash
+git clone https://github.com/ymlee13/address-parsing.git
+cd address-parsing
