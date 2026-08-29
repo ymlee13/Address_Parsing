@@ -47,6 +47,13 @@ git lfs install
 git clone https://huggingface.co/Qwen/Qwen2.5-3B-Instruct
 ```
 
+## 📦 Model Weights
+
+The fine-tuned LoRA adapter is available on Hugging Face Hub:
+[**ymlee13/Qwen2.5-3B-Instruct_Address_Formatter**](https://huggingface.co/ymlee13/Qwen2.5-3B-Instruct_Address_Formatter)
+
+The parser will automatically download the base model (`Qwen/Qwen2.5-3B-Instruct`) and the adapter from Hugging Face when you run the code for the first time.
+
 ## 🚀 Quick Start
 
 ### Training the Model
