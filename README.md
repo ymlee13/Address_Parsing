@@ -1,8 +1,7 @@
 # Hong Kong Address Parser
 
 [![GitHub](https://img.shields.io/badge/GitHub-ymlee13/address_parser-blue)](https://github.com/ymlee13/address_parser)
-[![Hugging Face](https://img.shields.io/badge/Hugging%20Face-ymlee13/Qwen2.5--3B--Instruct--Address--Formatter-yellow)](https://huggingface.co/ymlee13/ymlee13/Qwen2.5-3B-Instruct_Address_Formatter)
-
+[![Hugging Face](https://img.shields.io/badge/Hugging%20Face-ymlee13/Qwen2.5--3B--Instruct--Address--Formatter-yellow)](https://huggingface.co/ymlee13/Qwen2.5-3B-Instruct_Address_Formatter)
 ## 📝 Overview
 
 A fine-tuned **Qwen2.5-3B-Instruct** model for Hong Kong address parsing and formatting. The model splits unstructured address text into two structured lines following Hong Kong addressing conventions.
