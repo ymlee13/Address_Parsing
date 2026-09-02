@@ -233,9 +233,6 @@ The parser includes special handling for older GPUs:
 - Hugging Face Transformers: https://github.com/huggingface/transformers
 - PEFT Library: https://github.com/huggingface/peft
 
-## 📝 License
-This project is licensed under the MIT License - see the LICENSE file for details.
-
 ## 🙏 Acknowledgments
 - Qwen for the base model
 - Hugging Face for the transformers library
