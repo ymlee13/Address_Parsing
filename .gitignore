@@ -1,0 +1,33 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+ENV/
+.venv
+
+# Jupyter Notebooks
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# Model files (large)
+*.bin
+*.safetensors
+*.pth
+*.ckpt
+models/
+Qwen2.5-3B-Instruct_Address_Formatter/
+
+# Data files (if large)
+# data/ALS-GeoJSON.zip   # uncomment if you want to exclude the zip
+
+# IDE
+.vscode/
+.idea/
+
+# System
+.DS_Store
+Thumbs.db
