@@ -142,7 +142,7 @@ address_parsing/
     └── Qwen2.5-3B-Instruct_Address_Formatter/ # Fine-tuned adapters
 ```
 
-##🔧 Training (Optional)
+## 🔧 Training (Optional)
 If you want to retrain the model:
 ### 1. **Prepare your data**
 ```bash
@@ -179,7 +179,7 @@ jupyter notebook test_model.ipynb
 - Traditional Chinese conversion
 - English spell checking
 
-##📊 Dataset
+## 📊 Dataset
 The model was trained on a dataset of 570+ Hong Kong addresses generated from real geospatial data (ALS-GeoJSON from HK government data portal). Each address is split into:
 - Line 1: Specific location (floor, unit, building)
 - Line 2: General location (street, district, region)
