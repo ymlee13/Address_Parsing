@@ -1,6 +1,6 @@
 # Hong Kong Address Parser
 
-[![GitHub](https://img.shields.io/badge/GitHub-ymlee13/address_parser-blue)](https://github.com/ymlee13/address_parser)
+[![GitHub](https://img.shields.io/badge/GitHub-ymlee13/address_parser-blue)](https://github.com/ymlee13/Address_Parsing)
 [![Hugging Face](https://img.shields.io/badge/Hugging%20Face-ymlee13/Qwen2.5--3B--Instruct--Address--Formatter-yellow)](https://huggingface.co/ymlee13/Qwen2.5-3B-Instruct_Address_Formatter)
 ## 📝 Overview
 
